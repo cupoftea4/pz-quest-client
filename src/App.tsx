@@ -13,6 +13,7 @@ function App() {
   return (
     <>
       <div className="App">
+        Bad code
         <h1>Завдання {taskNumber + 1}</h1>
         <input type="text" className='input' onChange={e => setAnswer(e.currentTarget.value)}/>
         <button onClick={() => submitAnswer()}>
