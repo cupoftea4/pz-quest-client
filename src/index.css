@@ -1,11 +1,16 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;900&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #213547;
+:root {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 600;
+
+  color: hsla(0, 0%, 100%, 0.87);
+  background: linear-gradient(-160deg, hsl(299, 100%, 90%) 2.16%, hsl(29, 96%, 72%) 128.38%);
+  background-repeat: no-repeat;
+
+  --color-primary: hsl(320, 41%, 37%);
+  --color-secondary: hsl(25, 86%, 46%);
+  --color-background: hsla(0, 100%, 99%, 0.65);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,57 +19,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #875800;
-  /* background-color: #213547; */
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #ffffff;
-    background-color: #213547;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #213547;
-  }
+html, body, #root {
+  min-height: 100%;
 }
