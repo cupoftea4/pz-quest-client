@@ -3,7 +3,14 @@ import './App.css'
 
 function App() {
   const [answer, setAnswer] = useState("")
-  const [task] = useState("Current task")
+  const [task] = useState(`Дайте відповідь на питання. Що це за структури даних ?
+  A: {13, 6 ,56 ,3}
+  B: {5, 13, 56, 3}
+  С: {55, 2 , 0, 12}
+  dfds
+  dsflsajfdskjfkdskfjsdklfjkldsjfksdkjsfkjhdsjkhfdsj
+  ds
+  sfd`)
   const [taskNumber, setTaskNumber] = useState(0)
   const [isHard, setIsHard] = useState(false)
 
@@ -24,11 +31,11 @@ function App() {
           <div className='content'>
             <h1>Завдання {taskNumber + 1}</h1>
             <div>
-              <img className='image' src={""} alt="Task image"/>
+              <img className='image' src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/RedCat_8727.jpg/1200px-RedCat_8727.jpg"} width={320} alt="Task image"/>
             </div>
-            <div>{task}</div>
+            <div className='question'>{task}</div>
             <textarea
-              placeholder="Введіть відповідь сюди" rows={5} className='input' 
+              placeholder="Введіть відповідь сюди" rows={4} className='input' 
               onChange={e => setAnswer(e.currentTarget.value)}/>
           </div>
         </div>
@@ -39,8 +46,8 @@ function App() {
           <button className="button" onClick={() => submitAnswer()}>
             Пропустити
           </button>
-          <div>Contact dev @aler1x @cupoftea4</div>
         </div>
+        <div className='feedback'>Contact dev <a href='https://t.me/lpnu_timetable'>@lpnu_timetable</a></div>
       </div>
     </>
   )

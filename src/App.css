@@ -15,13 +15,14 @@ h1 {
 
 .input {
   padding: 0.5em;
-  border: 1px solid hsl(0, 0%, 80%);
-  border-radius: 0.125rem;
-  display: block;
-  width: 100%;
+  min-width: 100%;
   border-radius: 0.325rem;
   background-color: transparent;
-  border: 0.5px solid var(--color-primary)
+  outline: none;
+}
+
+.input:focus, .input:active, .input:focus-within {
+  outline: var(--color-primary) auto 1px;
 }
 
 .content {
@@ -29,6 +30,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: .325rem;
   flex: 1;
 }
 
@@ -36,7 +38,8 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  gap: 1rem;
+  padding: 2rem 3rem;
   background-color: var(--color-background);
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25));
   border-radius: 0.325rem;
@@ -44,13 +47,12 @@ h1 {
 }
 
 .button {
-  padding: 1rem 1rem;
+  padding: 1rem;
   display: block;
-  width: 100%;
+  min-width: 100%;
   border-radius: 0.325rem;
   background-color: var(--color-background);
   box-shadow: 0px 2px 6px 0px hsla(0, 0%, 0%, 0.25);
-  /* font */
   color: var(--color-primary);
   text-align: center;
   font-size: 1.25rem;
@@ -60,28 +62,46 @@ h1 {
 }
 
 .submit {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   color: hsl(0, 100%, 99%);
   margin-bottom: .5rem;
 }
 
-/* switch not touch, source https://codepen.io/vanderlanth/pen/BoNLvq */
+.feedback {
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.feedback a {
+  text-decoration: underline;
+}
+
+.question {
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+/* 
+----------------------------------------------------------------
+  Do not touch, source https://codepen.io/vanderlanth/pen/BoNLvq 
+----------------------------------------------------------------
+*/
 .switch-button {
   text-align: center;
   will-change: transform;
-  z-index: 197 !important;
+  z-index: 197;
   cursor: pointer;
   transition: 0.3s ease all;
-  border: 0.5px solid var(--color-secondary);
+  border: 0.5px solid var(--color-primary);
   border-radius: .325rem;
 }
 
 .switch-button-case {
   display: inline-block;
   background: none;
-  width: 49%;
+  width: 50%;
   height: 100%;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   position: relative;
   border: none;
   transition: 0.3s ease all;
@@ -99,7 +119,7 @@ h1 {
 }
 
 .switch-button .active {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   position: absolute;
   left: 0;
   top: 0;
@@ -117,3 +137,5 @@ h1 {
 .switch-button .active-case {
   color: hsl(0, 100%, 99%);
 }
+
+/* ------------------------------------------------------------ */
