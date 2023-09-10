@@ -14,7 +14,7 @@ function App() {
     <>
       <div className="App">
         <h1>Завдання {taskNumber + 1}</h1>
-        <input type="text" className='input' onChange={e => setAnswer(e.currentTarget.value)}/>
+        <input placeholder="Введіть відповідь сюди" type="text" className='input' onChange={e => setAnswer(e.currentTarget.value)}/>
         <button onClick={() => submitAnswer()}>
           Перевірити
         </button>
