@@ -43,7 +43,7 @@ function TaskView() {
               <img 
                 className='image' 
                 src={task.picture.startsWith("/") ? FETCH_ORIGIN + task.picture : task.picture} 
-                width={320} alt="Task image"
+                width={250} alt="Task image"
               />}
           </div>
           <div className='question'>{task?.question}</div>
