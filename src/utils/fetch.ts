@@ -1,7 +1,7 @@
 type FetchOptions = Omit<RequestInit, "body" | "method">;
 type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
-const FETCH_ORIGIN = `http://localhost:2023`;
+export const FETCH_ORIGIN = `http://localhost:2023`;
 
 
 export function fetchJson<T>(

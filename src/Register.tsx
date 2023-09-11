@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Register.css'
 import { fetchJson } from './utils/fetch';
 import { RegisterResponse } from './types/api';
+import { AppStateContext } from './App';
 
-const Register = () => {
-  const [teamName, setTeamName] = useState('')
+const RegisterView = () => {
+  const [teamName, setTeamName] = useState('');
+  const [, setState] = useContext(AppStateContext);
 
   const register = () => {
     console.log('register ' + teamName);
@@ -16,6 +18,7 @@ const Register = () => {
     fetchJson<RegisterResponse>('/register', 'POST', { teamName }).then(res => {
       localStorage.setItem('teamName', teamName)
       localStorage.setItem('hint', res.hint)
+      setState('hint')
       alert('Ви успішно зареєструвалися')
     }).catch(err => {
       alert(err.message)
@@ -36,4 +39,4 @@ const Register = () => {
   )
 }
 
-export default Register;
+export default RegisterView;
