@@ -1,35 +1,32 @@
-import { useEffect, useState } from 'react'
-import './Task.css'
-import { FETCH_ORIGIN, fetchJson } from './utils/fetch'
+import { useContext, useEffect, useState } from 'react'
+import { FETCH_ORIGIN } from './utils/fetch'
 import { Task, TasksResponse } from './types/api'
+import { AppStateContext } from './App'
+import { getTasks, skipTask, submitAnswer } from './utils/api'
+import './Task.css'
 
 function TaskView() {
+  const [, setState] = useContext(AppStateContext);
   const [answer, setAnswer] = useState("")
   const [tasks, setTasks] = useState<TasksResponse>()
-  const [taskNumber, setTaskNumber] = useState(0)
   const [isHard, setIsHard] = useState(false)
   const [task, setTask] = useState<Task>()
 
   useEffect(() => {
-    fetchJson<TasksResponse>(location.pathname, 'POST', { teamName: localStorage.getItem('teamName') }).then(res => {
-      console.log(res)
+    getTasks().then(res => {
+      if (typeof res === "string") {
+        setState(res)
+        return
+      }
       setTasks(res)
-    }).catch(err => {
-      alert(err.message)
     })
-  }, [])
+  }, [setState])
 
   useEffect(() => {
     if (tasks) {
       setTask(isHard ? tasks.tasks.hard : tasks.tasks.simple)
     }
   }, [tasks, isHard])
-
-
-  function submitAnswer() {
-    console.log(answer)
-    setTaskNumber(taskNumber + 1)
-  }
 
   return (
     <div className="app">
@@ -56,10 +53,13 @@ function TaskView() {
         </div>
       </div>
       <div>
-        <button className="button submit" onClick={() => submitAnswer()}>
+        <button className="button submit" onClick={() => submitAnswer(answer, !isHard).then(setState)}>
           Перевірити
         </button>
-        <button className="button" onClick={() => submitAnswer()}>
+        <button className="button" onClick={() => skipTask().then(state => {
+          console.log("NEW team state:", state)
+          setState(state)
+        })}>
           Пропустити
         </button>
       </div>

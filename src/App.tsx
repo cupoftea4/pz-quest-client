@@ -4,12 +4,12 @@ import TaskView from "./TaskView";
 import HintView from "./HintView";
 import WinView from "./WinView";
 
-type AppState = "new" | "hint" | "task" | "finished"
+export type TeamState = "new" | "hint" | "task" | "finished"
 
-export const AppStateContext = createContext<[AppState, (state: AppState) => void]>(['new', () => {}]);
+export const AppStateContext = createContext<[TeamState, (state: TeamState) => void]>(['new', () => {}]);
 
 const App = () => {
-  const [state, setState] = useState<AppState>("new");
+  const [state, setState] = useState<TeamState>("new");
   console.log(state)
 
   useEffect(() => {
