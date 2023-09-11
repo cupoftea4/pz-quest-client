@@ -1,29 +1,20 @@
 import { useContext, useState } from 'react';
 import './Register.css'
-import { fetchJson } from './utils/fetch';
-import { RegisterResponse } from './types/api';
 import { AppStateContext } from './App';
 import { toast } from 'react-toastify';
+import { registerTeam } from './utils/api';
 
 const RegisterView = () => {
   const [teamName, setTeamName] = useState('');
   const [, setState] = useContext(AppStateContext);
 
   const register = () => {
-    console.log('register ' + teamName);
     if (teamName === '') {
       toast.error('Введіть назву вашої команди')
       return
     }
 
-    fetchJson<RegisterResponse>('/register', 'POST', { teamName }).then(res => {
-      localStorage.setItem('teamName', teamName)
-      localStorage.setItem('hint', res.hint)
-      setState('hint')
-      toast.success('Ви успішно зареєструвалися')
-    }).catch(err => {
-      toast.error(err.message);
-    })
+    registerTeam(teamName).then(setState);
   }
 
   return (
