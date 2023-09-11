@@ -51,7 +51,7 @@ function TaskView() {
           </div>
           <div className='question'>{task?.question}</div>
           <textarea
-            placeholder="Введіть відповідь сюди" rows={4} className='input' 
+            placeholder="Введіть відповідь" rows={4} className='input' 
             onChange={e => setAnswer(e.currentTarget.value)}/>
         </div>
       </div>

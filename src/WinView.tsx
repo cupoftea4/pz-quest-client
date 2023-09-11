@@ -1,4 +1,4 @@
-import './WinWindow.css';
+import { FC } from 'react';
 
 interface WinWindowProps {
     finalScore: string | null;
@@ -19,20 +19,19 @@ function getRandomWish(wishes: string[]) {
     return wishes[randomIndex];
 }
 
-function WinWindow({ finalScore, wishes = realWishes }: WinWindowProps) {
+const WinView: FC<WinWindowProps> = ({ finalScore, wishes = realWishes }) =>  {
     const randomWish = getRandomWish(wishes);
 
     return (
         <div className="app">
             <div className='container'>
-                <div className="win-window">
-                    <h2>Вітаємо!</h2>
+                <div className="win-window" style={{textAlign: "center"}}>
+                    <h1>Вітаємо!</h1>
                     <p>Твій фінальний бал: {finalScore}</p>
-
-                    <div className="wishes">
-                        <h3>Пам'ятай:</h3>
-                        <p>{randomWish}</p>
-                    </div>
+                </div>
+                <div className="wishes">
+                    <h3>Пам'ятай:</h3>
+                    <p>{randomWish}</p>
                 </div>
             </div>
             <div className='feedback'>Contact dev <a href='https://t.me/lpnu_timetable'>@lpnu_timetable</a></div>
@@ -40,4 +39,4 @@ function WinWindow({ finalScore, wishes = realWishes }: WinWindowProps) {
     );
 }
 
-export default WinWindow;
+export default WinView;
