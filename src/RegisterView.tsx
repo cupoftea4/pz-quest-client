@@ -3,6 +3,7 @@ import './Register.css'
 import { fetchJson } from './utils/fetch';
 import { RegisterResponse } from './types/api';
 import { AppStateContext } from './App';
+import { toast } from 'react-toastify';
 
 const RegisterView = () => {
   const [teamName, setTeamName] = useState('');
@@ -11,7 +12,7 @@ const RegisterView = () => {
   const register = () => {
     console.log('register ' + teamName);
     if (teamName === '') {
-      alert('Введіть назву вашої команди')
+      toast.error('Введіть назву вашої команди')
       return
     }
 
@@ -19,9 +20,9 @@ const RegisterView = () => {
       localStorage.setItem('teamName', teamName)
       localStorage.setItem('hint', res.hint)
       setState('hint')
-      alert('Ви успішно зареєструвалися')
+      toast.success('Ви успішно зареєструвалися')
     }).catch(err => {
-      alert(err.message)
+      toast.error(err.message);
     })
   }
 

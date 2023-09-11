@@ -3,6 +3,8 @@ import RegisterView from "./RegisterView";
 import TaskView from "./TaskView";
 import HintView from "./HintView";
 import WinView from "./WinView";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export type TeamState = "new" | "hint" | "task" | "finished"
 
@@ -29,13 +31,13 @@ const App = () => {
   return (
     <AppStateContext.Provider value={[ state, setState ]}>
       {
-
         state === "new" ? <RegisterView />
         : state === "task" ? <TaskView />
         : state === "hint" ? <HintView />
         : state === "finished" ? <WinView finalScore={localStorage.getItem("score")} />
         : <RegisterView />
       }
+       <ToastContainer autoClose={2000} limit={1}/>
     </AppStateContext.Provider>
   )
 }

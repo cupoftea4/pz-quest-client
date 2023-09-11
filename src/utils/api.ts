@@ -1,18 +1,22 @@
 import { TeamState } from "../App"
 import { CheckAnswerResponse, SkipResponse, TasksResponse } from "../types/api"
-import { fetchJson } from "./fetch"
+import { fetchJson } from "./fetch";
+import { toast } from 'react-toastify';
 
 export function getTasks(): Promise<TasksResponse | TeamState> {
   return fetchJson<TasksResponse>(location.pathname, 'POST', { teamName: localStorage.getItem('teamName') }).then(res => {
-    console.log(res)
     if (res.status === "won") {
       win()
       return "finished";
     }
     localStorage.setItem("score", res.score.toString())
+    if (res.status === "cheated") {
+      toast.success(res.message)
+      return "task";
+    }
     return res;
   }).catch(err => {
-    alert(err.message)
+    toast.error(err.message)
     return "hint";
   })
 }
@@ -24,11 +28,12 @@ export function submitAnswer(answer: string, isSimple: boolean): Promise<TeamSta
   }).then(res => {
     console.log(res)
     if (res.status === "wrong") {
-      alert("Ви відповіли неправильно!")
+      toast.error("Ви відповіли неправильно!")
       return "task";
     }
     localStorage.setItem("score", res.score.toString())
     if (res.status === "correct") {
+      toast.success("Відповідь правильна!")
       hint(res.hint);
       return "hint";
     } else if (res.status === "won") {
@@ -37,7 +42,7 @@ export function submitAnswer(answer: string, isSimple: boolean): Promise<TeamSta
     }
     return "task";
   }).catch(err => {
-    alert(err.message)
+    toast.error(err.message)
     return "task";
   })
 }
@@ -58,14 +63,14 @@ export function skipTask(): Promise<TeamState> {
     })
     .catch(err => {
       console.log("Skipping", err)
-      alert(err.message)
+      toast.error(err.message)
       return "task";
     })
 }
 
 function win() {
   localStorage.setItem("finished", "true");
-  alert("Вітаємо! Ви відповіли правильно на всі питання!")
+  toast.success("Вітаємо! Ви відповіли правильно на всі питання!")
 }
 
 function hint(hint?: string) {
