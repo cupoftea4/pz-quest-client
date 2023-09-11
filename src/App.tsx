@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import RegisterView from "./Register";
 import TaskView from "./Task";
 import HintView from "./Hint";
+import WinWindow from "./WinWindow";
 
 type AppState = "new" | "hint" | "task" | "finished"
 
@@ -28,10 +29,11 @@ const App = () => {
   return (
     <AppStateContext.Provider value={[ state, setState ]}>
       {
+
         state === "new" ? <RegisterView />
-        : state === "task" ? <TaskView />
+        : state === "task" ? <RegisterView />
         : state === "hint" ? <HintView />
-        // : state === "finished" ? <Finished />
+        : state === "finished" ? <WinWindow finalScore={localStorage.getItem("finished")} />
         : <RegisterView />
       }
     </AppStateContext.Provider>

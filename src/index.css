@@ -58,12 +58,21 @@ html, body, .root {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: hsl(21, 61%, 73%);
 }
 
 .submit {
   background-color: var(--color-primary);
   color: hsl(0, 100%, 99%);
   margin-bottom: .5rem;
+}
+
+.submit:hover {
+  background-color: hsl(240, 48%, 56%);
 }
 
 .feedback {
