@@ -12,7 +12,6 @@ export const AppStateContext = createContext<[TeamState, (state: TeamState) => v
 
 const App = () => {
   const [state, setState] = useState<TeamState>("new");
-  console.log(state)
 
   useEffect(() => {
     const isRegistered = localStorage.getItem("teamName")

@@ -37,8 +37,8 @@ function TaskView() {
   return (
     <div className="app">
       <div className='container'>
-        <div className="switch-button">
-          <span className={`active ${isHard && "switch-active"}`} onClick={() => setIsHard(!isHard)}></span>
+        <div className="switch-button" onClick={() => setIsHard(!isHard)}>
+          <span className={`active ${isHard && "switch-active"}`} ></span>
           <button className={`switch-button-case left ${!isHard && "active-case"}`}>Easy</button>
           <button className={`switch-button-case right ${isHard && "active-case"}`}>Hard</button>
         </div>
@@ -63,10 +63,7 @@ function TaskView() {
         <button className="button submit" onClick={() => submitAnswer(answer, !isHard).then(setState)}>
           Перевірити
         </button>
-        <button className="button" onClick={() => skipTask().then(state => {
-          console.log("NEW team state:", state)
-          setState(state)
-        })}>
+        <button className="button" onClick={() => skipTask().then(setState)}>
           Пропустити
         </button>
       </div>
