@@ -11,8 +11,6 @@ function TaskView() {
   const [tasks, setTasks] = useState<TasksResponse>();
   const [isHard, setIsHard] = useState(false);
   const [task, setTask] = useState<Task>();
-  const [timeLeft, setTimeLeft] = useState(60);
-  const [timerActive, setTimerActive] = useState(true);
   const [score, setScore] = useState<string | null>(null);
 
   useEffect(() => {
@@ -36,28 +34,14 @@ function TaskView() {
     }
   }, [tasks, isHard]);
 
-  useEffect(() => {
-    if (timerActive && timeLeft > 0) {
-      const timer = setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    } else if (timerActive && timeLeft === 0) {
-      setTimerActive(false);
-      submitAnswer("Timeout!", !isHard).then(setState);
-    }
-  }, [timeLeft, timerActive, setState, isHard]);
-
   return (
     <div className="app">
       <div className='container'>
         <div className="switch-button">
-          <span className={`active ${isHard && "switch-active"}`}></span>
+          <span className={`active ${isHard && "switch-active"}`} onClick={() => setIsHard(!isHard)}></span>
           <button className={`switch-button-case left ${!isHard && "active-case"}`}>Easy</button>
           <button className={`switch-button-case right ${isHard && "active-case"}`}>Hard</button>
         </div>
-        <div className="timer">Залишилось часу: {timeLeft} с</div>
         <div className='content'>
           <h1>Завдання {tasks?.currentTask}</h1>
           <div>
