@@ -1,0 +1,18 @@
+.qrcode {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qrcode svg {
+  width: 5rem;
+  margin-right: 0.5rem;
+  fill: var(--color-primary);
+}
+
+.qrcode h1 {
+  font-size: 1.125rem;
+  text-align: center;
+  color: var(--color-primary);
+}
