@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import RegisterView from "./RegisterView";
-import TaskView from "./TaskView";
-import HintView from "./HintView";
-import WinView from "./WinView";
+import RegisterView from "./views/RegisterView";
+import TaskView from "./views/TaskView";
+import HintView from "./views/HintView";
+import WinView from "./views/WinView";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

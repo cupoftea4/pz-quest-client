@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
-import './Register.css'
-import { AppStateContext } from './App';
 import { toast } from 'react-toastify';
-import { registerTeam } from './utils/api';
+import { AppStateContext } from '../App';
+import { registerTeam } from '../utils/api';
+import './Register.css'
 
 const RegisterView = () => {
   const [teamName, setTeamName] = useState('');

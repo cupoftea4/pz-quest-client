@@ -19,17 +19,17 @@ export function registerTeam(teamName: string): Promise<TeamState> {
 export function getTasks(): Promise<TasksResponse | TeamState> {
   return fetchJson<TasksResponse>(location.pathname, 'POST', { teamName: localStorage.getItem('teamName') }).then(res => {
     if (res.status === "won") {
-      win()
+      win();
       return "finished";
     }
     localStorage.setItem("score", res.score.toString())
     if (res.status === "cheated") {
-      toast.success(res.message)
-      return "task";
+      toast.success(res.message);
+      return "hint";
     }
     return res;
   }).catch(err => {
-    toast.error(err.message)
+    toast.error(err.message);
     return "hint";
   })
 }

@@ -1,7 +1,7 @@
 type FetchOptions = Omit<RequestInit, "body" | "method">;
 type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
-export const FETCH_ORIGIN = `http://localhost:2023`;
+export const FETCH_ORIGIN = import.meta.env.VITE_API_URL ?? "localhost:2023";
 
 
 export function fetchJson<T>(

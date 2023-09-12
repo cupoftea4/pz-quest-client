@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import {ReactComponent as QrCode} from './assets/qrcode.svg';
+import {ReactComponent as QrCode} from '../assets/qrcode.svg';
 import './Hint.css'
 
 const HintView = () => {

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
-import { FETCH_ORIGIN } from './utils/fetch'
-import { Task, TasksResponse } from './types/api'
-import { AppStateContext } from './App'
-import { getTasks, skipTask, submitAnswer } from './utils/api'
+import { FETCH_ORIGIN } from '../utils/fetch'
+import { Task, TasksResponse } from '../types/api'
+import { AppStateContext } from '../App'
+import { getTasks, skipTask, submitAnswer } from '../utils/api'
 import './Task.css'
 
 function TaskView() {
