@@ -7,32 +7,38 @@ import './Task.css'
 
 function TaskView() {
   const [, setState] = useContext(AppStateContext);
-  const [answer, setAnswer] = useState("")
-  const [tasks, setTasks] = useState<TasksResponse>()
-  const [isHard, setIsHard] = useState(false)
-  const [task, setTask] = useState<Task>()
+  const [answer, setAnswer] = useState("");
+  const [tasks, setTasks] = useState<TasksResponse>();
+  const [isHard, setIsHard] = useState(false);
+  const [task, setTask] = useState<Task>();
+  const [score, setScore] = useState<string | null>(null);
 
   useEffect(() => {
     getTasks().then(res => {
       if (typeof res === "string") {
-        setState(res)
-        return
+        setState(res);
+        return;
       }
-      setTasks(res)
-    })
-  }, [setState])
+      setTasks(res);
+    });
+
+    const storedScore = localStorage.getItem("score");
+    if (storedScore !== null) {
+      setScore(storedScore);
+    }
+  }, [setState]);
 
   useEffect(() => {
     if (tasks) {
-      setTask(isHard ? tasks.tasks.hard : tasks.tasks.simple)
+      setTask(isHard ? tasks.tasks.hard : tasks.tasks.simple);
     }
-  }, [tasks, isHard])
+  }, [tasks, isHard]);
 
   return (
     <div className="app">
       <div className='container'>
         <div className="switch-button" onClick={() => setIsHard(!isHard)}>
-          <span className={`active ${isHard && "switch-active"}`}></span>
+          <span className={`active ${isHard && "switch-active"}`} ></span>
           <button className={`switch-button-case left ${!isHard && "active-case"}`}>Easy</button>
           <button className={`switch-button-case right ${isHard && "active-case"}`}>Hard</button>
         </div>
@@ -51,15 +57,13 @@ function TaskView() {
             placeholder="Введіть відповідь" rows={4} className='input' 
             onChange={e => setAnswer(e.currentTarget.value)}/>
         </div>
+        {score !== null && <div className='score'>Загальний бал команди: {score}</div>}
       </div>
       <div>
         <button className="button submit" onClick={() => submitAnswer(answer, !isHard).then(setState)}>
           Перевірити
         </button>
-        <button className="button" onClick={() => skipTask().then(state => {
-          console.log("NEW team state:", state)
-          setState(state)
-        })}>
+        <button className="button" onClick={() => skipTask().then(setState)}>
           Пропустити
         </button>
       </div>
@@ -69,3 +73,4 @@ function TaskView() {
 }
 
 export default TaskView;
+

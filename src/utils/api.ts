@@ -39,7 +39,6 @@ export function submitAnswer(answer: string, isSimple: boolean): Promise<TeamSta
     "/check-answer", 'POST',
     { teamName: localStorage.getItem('teamName'), answer, isSimple
   }).then(res => {
-    console.log(res)
     if (res.status === "wrong") {
       toast.error("Ви відповіли неправильно!")
       return "task";
@@ -61,12 +60,9 @@ export function submitAnswer(answer: string, isSimple: boolean): Promise<TeamSta
 }
 
 export function skipTask(): Promise<TeamState> {
-  console.log("Skipping")
   return fetchJson<SkipResponse>("/skip", 'POST', { teamName: localStorage.getItem('teamName') })
     .then(res => {
-      console.log("Skipping", res)
       if (res.status === "won") {
-        console.log("Won")
         win()
         return "finished";
       } else {
@@ -75,7 +71,6 @@ export function skipTask(): Promise<TeamState> {
       }
     })
     .catch(err => {
-      console.log("Skipping", err)
       toast.error(err.message)
       return "task";
     })
